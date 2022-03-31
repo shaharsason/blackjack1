@@ -1,99 +1,16 @@
 from tkinter import *
-from PIL import ImageTk,Image
+from PIL import ImageTk, Image
 import random
+from tkinter import messagebox
 
 blackjack = Tk()
 blackjack.title("blackjack")
-blackjack.geometry("500x500")
+blackjack.geometry("800x800")
 canv = Canvas(width=1440,height=1920)
 canv.place(x=0, y=0)
 
 img = ImageTk.PhotoImage(Image.open("blackjackimage.jpg"))
-canv.create_image(0,0,image=img)
-
-
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-card = random.choice(cards)
-card2 = random.choice(cards)
-sum_cards = card + card2
-def calculate_score():
-    global sum_cards
-    if sum_cards == 21 and sum_cards == 2:
-        return 0
-    if sum_cards > 21:
-        sum_cards -= 11
-        sum_cards += 1
-    return sum_cards
-lbl = Label(blackjack,width=10,height=7,text=(calculate_score()))
-lbl.place(x=300,y=50)
-lbl = Label(blackjack,width=12,height=7,text="your sum cards: ")
-lbl.place(x=240,y=50)
-buttonClicked = False
-#def changeValue():
-#    if buttonClicked:
-#        buttonClicked=False
-#    if not buttonClicked:
-#        buttonClicked=True
-#tk = Tk()
-#btn = Button(tk, text="Put whatever text you want here, to tell the person what pressing the button will do", command=changeValue())
-#btn.pack()
-def comuter_cards(back_card,random_card3,num_of_the_card):
-    xcard = 50
-    xcard2 = 150
-    ycard = 170
-    ycard2 = 170
-    if card == num_of_the_card:
-        back_card.place(x=xcard,y=ycard)
-    if card2 == num_of_the_card:
-        random_card3.place(x=xcard2,y=ycard2)
-
-
-def user_cards(random_card,random_card2,random_card3,num_of_the_card,club_cards_canv,diamond_cards_canv,heart_cards_canv,spade_cards_canv):
-    xcard = 50
-    xcard2 = 150
-    ycard = 50
-    ycard2 = 50
-    if card == num_of_the_card:
-        random_card.place(x=xcard,y=ycard)
-    if card2 == num_of_the_card:
-        random_card2.place(x=xcard2,y=ycard2)
-    while random_card == random_card3 or random_card3 == random_card2 or random_card == random_card2  and card == num_of_the_card and card2 == num_of_the_card:
-        if random_card2 == club_cards_canv:
-            random_card2 = diamond_cards_canv
-            random_card2.place(x=xcard2,y=ycard2)
-        if random_card2 == diamond_cards_canv:
-            random_card2 = club_cards_canv
-            random_card2.place(x=xcard2,y=ycard2)
-        if random_card2 == heart_cards_canv:
-            random_card2 = club_cards_canv
-            random_card2.place(x=xcard2,y=ycard2)
-        if random_card2 == spade_cards_canv:
-            random_card2 = club_cards_canv
-            random_card2.place(x=xcard2,y=ycard2)
-        if random_card == club_cards_canv:
-            random_card = diamond_cards_canv
-            random_card.place(x=xcard2,y=ycard2)
-        if random_card == diamond_cards_canv:
-            random_card = club_cards_canv
-            random_card.place(x=xcard2,y=ycard2)
-        if random_card == heart_cards_canv:
-            random_card = club_cards_canv
-            random_card.place(x=xcard2,y=ycard2)
-        if random_card == spade_cards_canv:
-            random_card = club_cards_canv
-            random_card.place(x=xcard2,y=ycard2)
-        if random_card3 == club_cards_canv:
-            random_card3 = diamond_cards_canv
-            random_card3.place(x=xcard2,y=ycard2)
-        if random_card3 == diamond_cards_canv:
-            random_card3 = club_cards_canv
-            random_card3.place(x=xcard2,y=ycard2)
-        if random_card3 == heart_cards_canv:
-            random_card3 = club_cards_canv
-            random_card3.place(x=xcard2,y=ycard2)
-        if random_card3 == spade_cards_canv:
-            random_card3 = club_cards_canv
-            random_card3.place(x=xcard2,y=ycard2)
+canv.create_image(0, 0, image=img)
 
 backcardcanv = Canvas(width=74, height=107)
 imagebackcard = ImageTk.PhotoImage(Image.open("backcard.png"))
@@ -115,12 +32,6 @@ spade1cardcanv = Canvas(width=74, height=107)
 image1spadecard = ImageTk.PhotoImage(Image.open("1_spade.png"))
 spade1cardcanv.create_image(0, 0, image=image1spadecard, anchor='nw')
 all1card = [club1cardcanv,diamond1cardcanv,heart1cardcanv,spade1cardcanv]
-random1card = random.choice(all1card)
-random1card2 = random.choice(all1card)
-random1card3 = random.choice(all1card)
-
-user_cards(random1card,random1card2,random1card3,11,club1cardcanv,diamond1cardcanv,heart1cardcanv,spade1cardcanv)
-comuter_cards(backcardcanv,random1card3,11)
 
 club2cardcanv = Canvas(width=74, height=107)
 image2clubcard = ImageTk.PhotoImage(Image.open("2_club.png"))
@@ -138,12 +49,6 @@ spade2cardcanv = Canvas(width=74, height=107)
 image2spadecard = ImageTk.PhotoImage(Image.open("2_spade.png"))
 spade2cardcanv.create_image(0, 0, image=image2spadecard, anchor='nw')
 all2card = [club2cardcanv,diamond2cardcanv,heart2cardcanv,spade2cardcanv]
-random2card = random.choice(all2card)
-random2card2 = random.choice(all2card)
-random2card3 = random.choice(all2card)
-
-user_cards(random2card,random2card2,random2card3,2,club2cardcanv,diamond2cardcanv,heart2cardcanv,spade2cardcanv)
-comuter_cards(backcardcanv,random2card3,2)
 
 club3cardcanv = Canvas(width=74, height=107)
 image3clubcard = ImageTk.PhotoImage(Image.open("3_club.png"))
@@ -161,12 +66,7 @@ spade3cardcanv = Canvas(width=74, height=107)
 image3spadecard = ImageTk.PhotoImage(Image.open("3_spade.png"))
 spade3cardcanv.create_image(0, 0, image=image3spadecard, anchor='nw')
 all3card = [club3cardcanv,diamond3cardcanv,heart3cardcanv,spade3cardcanv]
-random3card = random.choice(all3card)
-random3card2 = random.choice(all3card)
-random3card3 = random.choice(all3card)
 
-user_cards(random3card,random3card2,random3card3,3,club3cardcanv,diamond3cardcanv,heart3cardcanv,spade3cardcanv)
-comuter_cards(backcardcanv,random3card3,3)
 
 club4cardcanv = Canvas(width=74, height=107)
 image4clubcard = ImageTk.PhotoImage(Image.open("4_club.png"))
@@ -184,12 +84,8 @@ spade4cardcanv = Canvas(width=74, height=107)
 image4spadecard = ImageTk.PhotoImage(Image.open("4_spade.png"))
 spade4cardcanv.create_image(0, 0, image=image4spadecard, anchor='nw')
 all4card = [club4cardcanv,diamond4cardcanv,heart4cardcanv,spade4cardcanv]
-random4card = random.choice(all4card)
-random4card2 = random.choice(all4card)
-random4card3 = random.choice(all4card)
 
-user_cards(random4card,random4card2,random4card3,4,club4cardcanv,diamond4cardcanv,heart4cardcanv,spade4cardcanv)
-comuter_cards(backcardcanv,random4card3,4)
+
 
 club5cardcanv = Canvas(width=74, height=107)
 image5clubcard = ImageTk.PhotoImage(Image.open("5_club.png"))
@@ -207,12 +103,7 @@ spade5cardcanv = Canvas(width=74, height=107)
 image5spadecard = ImageTk.PhotoImage(Image.open("5_spade.png"))
 spade5cardcanv.create_image(0, 0, image=image5spadecard, anchor='nw')
 all5card = [club5cardcanv,diamond5cardcanv,heart5cardcanv,spade5cardcanv]
-random5card = random.choice(all5card)
-random5card2 = random.choice(all5card)
-random5card3 = random.choice(all5card)
 
-user_cards(random5card,random5card2,random5card3,5,club5cardcanv,diamond5cardcanv,heart5cardcanv,spade5cardcanv)
-comuter_cards(backcardcanv,random5card3,5)
 
 club6cardcanv = Canvas(width=74, height=107)
 image6clubcard = ImageTk.PhotoImage(Image.open("6_club.png"))
@@ -230,12 +121,6 @@ spade6cardcanv = Canvas(width=74, height=107)
 image6spadecard = ImageTk.PhotoImage(Image.open("6_spade.png"))
 spade6cardcanv.create_image(0, 0, image=image6spadecard, anchor='nw')
 all6card = [club6cardcanv,diamond6cardcanv,heart6cardcanv,spade6cardcanv]
-random6card = random.choice(all6card)
-random6card2 = random.choice(all6card)
-random6card3 = random.choice(all6card)
-
-user_cards(random6card,random6card2,random6card3,6,club6cardcanv,diamond6cardcanv,heart6cardcanv,spade6cardcanv)
-comuter_cards(backcardcanv,random6card3,6)
 
 club7cardcanv = Canvas(width=74, height=107)
 image7clubcard = ImageTk.PhotoImage(Image.open("7_club.png"))
@@ -253,12 +138,7 @@ spade7cardcanv = Canvas(width=74, height=107)
 image7spadecard = ImageTk.PhotoImage(Image.open("7_spade.png"))
 spade7cardcanv.create_image(0, 0, image=image7spadecard, anchor='nw')
 all7card = [club7cardcanv,diamond7cardcanv,heart7cardcanv,spade7cardcanv]
-random7card = random.choice(all7card)
-random7card2 = random.choice(all7card)
-random7card3 = random.choice(all7card)
 
-user_cards(random7card,random7card2,random7card3,7,club7cardcanv,diamond7cardcanv,heart7cardcanv,spade7cardcanv)
-comuter_cards(backcardcanv,random7card3,7)
 
 club8cardcanv = Canvas(width=74, height=107)
 image8clubcard = ImageTk.PhotoImage(Image.open("8_club.png"))
@@ -276,12 +156,6 @@ spade8cardcanv = Canvas(width=74, height=107)
 image8spadecard = ImageTk.PhotoImage(Image.open("8_spade.png"))
 spade8cardcanv.create_image(0, 0, image=image8spadecard, anchor='nw')
 all8card = [club8cardcanv,diamond8cardcanv,heart8cardcanv,spade8cardcanv]
-random8card = random.choice(all8card)
-random8card2 = random.choice(all8card)
-random8card3 = random.choice(all8card)
-
-user_cards(random8card,random8card2,random8card3,8,club8cardcanv,diamond8cardcanv,heart8cardcanv,spade8cardcanv)
-comuter_cards(backcardcanv,random8card3,8)
 
 club9cardcanv = Canvas(width=74, height=107)
 image9clubcard = ImageTk.PhotoImage(Image.open("9_club.png"))
@@ -299,12 +173,6 @@ spade9cardcanv = Canvas(width=74, height=107)
 image9spadecard = ImageTk.PhotoImage(Image.open("9_spade.png"))
 spade9cardcanv.create_image(0, 0, image=image9spadecard, anchor='nw')
 all9card = [club9cardcanv,diamond9cardcanv,heart9cardcanv,spade9cardcanv]
-random9card = random.choice(all9card)
-random9card2 = random.choice(all9card)
-random9card3 = random.choice(all9card)
-
-user_cards(random9card,random9card2,random9card3,9,club9cardcanv,diamond9cardcanv,heart9cardcanv,spade9cardcanv)
-comuter_cards(backcardcanv,random9card3,9)
 
 club10cardcanv = Canvas(width=74, height=107)
 image10clubcard = ImageTk.PhotoImage(Image.open("10_club.png"))
@@ -374,11 +242,198 @@ all10card = [club10cardcanv,diamond10cardcanv,heart10cardcanv,spade10cardcanv,
 clubjackcardcanv,diamondjackcardcanv,heartjackcardcanv,spadejackcardcanv,
 clubkingcardcanv,diamondkingcardcanv,heartkingcardcanv,spadekingcardcanv,
 clubqueencardcanv,diamondqueencardcanv,heartqueencardcanv,spadequeencardcanv]
-random10card = random.choice(all10card)
-random10card2 = random.choice(all10card)
-random10card3 = random.choice(all9card)
 
-user_cards(random10card,random10card2,random10card3,10,club10cardcanv,diamond10cardcanv,heart10cardcanv,spade10cardcanv)
-comuter_cards(backcardcanv,random10card3,10)
+
+allcards = [all1card,all2card,all3card,all4card,all5card,all6card,all7card,
+all8card,all9card,all10card]
+listx = 150
+listy = 50
+
+sum_computer_cards = 0
+
+randomlist2 = random.choice(allcards)
+randomlist1 = random.choice(allcards)
+randomlistrandom = random.choice(randomlist1)
+randomlist3 = random.choice(allcards)
+randomlist4 = random.choice(allcards)
+
+sum_cards = []
+
+xcard = 70
+xcard2 = 150
+ycard = 50
+ycard2 = 50
+
+randomlistrandom3 = random.choice(randomlist3)
+randomlistrandom4 = random.choice(randomlist4)
+randomlistrandom3.place(x=xcard,y=ycard)
+randomlistrandom4.place(x=xcard2,y=ycard2)
+if randomlist3 == allcards[0] or randomlist4 == allcards[0]:
+    sum_cards.append(11)
+if randomlist3 == allcards[1] or randomlist4 == allcards[1]:
+    sum_cards.append(2)
+if randomlist3 == allcards[2] or randomlist4 == allcards[2]:
+    sum_cards.append(3)
+if randomlist3 == allcards[3] or randomlist4 == allcards[3]:
+    sum_cards.append(4)
+if randomlist3 == allcards[4] or randomlist4 == allcards[4]:
+    sum_cards.append(5)
+if randomlist3 == allcards[5] or randomlist4 == allcards[5]:
+    sum_cards.append(6)
+if randomlist3 == allcards[6] or randomlist4 == allcards[6]:
+    sum_cards.append(7)
+if randomlist3 == allcards[7] or randomlist4 == allcards[7]:
+    sum_cards.append(8)
+if randomlist3 == allcards[8] or randomlist4 == allcards[8]:
+    sum_cards.append(9)
+if randomlist3 == allcards[9] or randomlist4 == allcards[9]:
+    sum_cards.append(10)
+
+def more_cards_Function():
+    global listy
+    global listx
+    listx += 80
+    randomlist5 = random.choice(allcards)
+    randomlistrandom5 = random.choice(randomlist5)
+    randomlistrandom5.place(x=listx, y=listy)
+    if randomlist5 == allcards[0]:
+        sum_cards.append(11)
+    if randomlist5 == allcards[1]:
+        sum_cards.append(2)
+    if randomlist5 == allcards[2]:
+        sum_cards.append(3)
+    if randomlist5 == allcards[3]:
+        sum_cards.append(4)
+    if randomlist5 == allcards[4]:
+        sum_cards.append(5)
+    if randomlist5 == allcards[5]:
+        sum_cards.append(6)
+    if randomlist5 == allcards[6]:
+        sum_cards.append(7)
+    if randomlist5 == allcards[7]:
+        sum_cards.append(8)
+    if randomlist5 == allcards[8]:
+        sum_cards.append(9)
+    if randomlist5 == allcards[9]:
+        sum_cards.append(10)
+
+
+button_submit = Button(blackjack, text="Hit", width=6, command=more_cards_Function)
+button_submit.place(x=400, y=400)
+
+
+def calculate_score():
+    global sum_cards
+    if sum(sum_cards) == 21 and len(sum_cards) == 2:
+        return 0
+    if 11 in sum_cards and sum(sum_cards) > 21:
+        sum_cards.remove(11)
+        sum_cards.append(1)
+    return sum(sum_cards)
+
+
+calculate_score()
+lbl = Label(width=14,text=f"your sum cards: {calculate_score()}")
+lbl.place(x=50)
+usercardslbl = Label(blackjack,height=7,width=7, text="you")
+usercardslbl.place(y=50)
+computercardslbl = Label(blackjack,height=7,width=7, text="computer")
+computercardslbl.place(y=170)
+
+xcard = 70
+xcard2 = 150
+ycard = 170
+ycard2 = 170
+
+
+backcardcanv.place(x=xcard,y=ycard)
+randomlistrandom.place(x=xcard2, y=ycard2)
+if randomlist1 == allcards[0] or randomlist2 == allcards[0]:
+    sum_computer_cards += 11
+if randomlist1 == allcards[1] or randomlist2 == allcards[1]:
+    sum_computer_cards += 2
+if randomlist1 == allcards[2] or randomlist2 == allcards[2]:
+    sum_computer_cards += 3
+if randomlist1 == allcards[3] or randomlist2 == allcards[3]:
+    sum_computer_cards += 4
+if randomlist1 == allcards[4] or randomlist2 == allcards[4]:
+    sum_computer_cards += 5
+if randomlist1 == allcards[5] or randomlist2 == allcards[5]:
+    sum_computer_cards += 6
+if randomlist1 == allcards[6] or randomlist2 == allcards[6]:
+    sum_computer_cards += 7
+if randomlist1 == allcards[7] or randomlist2 == allcards[7]:
+    sum_computer_cards += 8
+if randomlist1 == allcards[8] or randomlist2 == allcards[8]:
+    sum_computer_cards += 9
+if randomlist1 == allcards[9] or randomlist2 == allcards[9]:
+    sum_computer_cards += 10
+print(sum_computer_cards)
+
+
+try_again = 0
+if sum(sum_cards) > 21:
+    lost = messagebox.showinfo('information', 'you went over 21, you lost.')
+    try_again = messagebox.askquestion('Ask Question', 'Do try again?')
+if try_again == 'no':
+    messagebox.showinfo('bye', 'ok, bye bye.')
+    blackjack.destroy()
+if try_again == 'yes':
+    randomlist2 = random.choice(allcards)
+    randomlist1 = random.choice(allcards)
+    randomlist3 = random.choice(allcards)
+    randomlist4 = random.choice(allcards)
+lblcardsbit = Label(blackjack, width=14, text=f"your sum cards: {calculate_score()}")
+lblcardsbit.place(x=50)
+
+
+
+def calculate_computer_score():
+    global sum_computer_cards
+    if sum_computer_cards == 21 and sum_computer_cards == 2:
+        return 0
+    if sum_computer_cards > 21:
+        sum_computer_cards -= 11
+        sum_computer_cards += 1
+    return sum_computer_cards
+
+
+randomlistrandom2 = random.choice(randomlist2)
+def stand():
+    global sum_computer_cards
+    global xcard2
+    global ycard2
+    randomlistrandom2.place(x=70, y=170)
+    randomlist = random.choice(allcards)
+    randomlistrandom = random.choice(randomlist)
+    randomlistrandom.place(x=listx, y=listy)
+    while sum_computer_cards != 0 and sum_computer_cards < 17:
+        xcard2 += 80
+        randomlist3 = random.choice(allcards)
+        randomlistrandom3 = random.choice(randomlist3)
+        randomlistrandom3.place(x=xcard2, y=ycard2)
+        if randomlist3 == allcards[0]:
+            sum_computer_cards += 1
+        if randomlist3 == allcards[1]:
+            sum_computer_cards += 2
+        if randomlist3 == allcards[2]:
+            sum_computer_cards += 3
+        if randomlist3 == allcards[3]:
+            sum_computer_cards += 4
+        if randomlist3 == allcards[4]:
+            sum_computer_cards += 5
+        if randomlist3 == allcards[5]:
+            sum_computer_cards += 6
+        if randomlist3 == allcards[6]:
+            sum_computer_cards += 7
+        if randomlist3 == allcards[7]:
+            sum_computer_cards += 8
+        if randomlist3 == allcards[8]:
+            sum_computer_cards += 9
+        if randomlist3 == allcards[9]:
+            sum_computer_cards += 10
+    print(sum_computer_cards)
+button_submit = Button(blackjack,text="Stand",width=6, command=stand)
+button_submit.place(x=300, y=400)
 
 blackjack.mainloop()
